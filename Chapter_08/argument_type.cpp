@@ -56,9 +56,14 @@ public:
 
 private:
     // private data members
-    int y;   // year
-    Month m; // month
-    int d;   // day
+    // int y;   // year
+    // Month m; // month
+    // int d;   // day
+
+    // Initialize the data members with default values
+    int y{2001};
+    Month m = Month::jan;
+    int d = 1;
 };
 
 // Date::Date(int y, int m, int d)
@@ -92,7 +97,8 @@ int Date::get_day() const
 int main()
 {
     // Date dx5{1998, 11, 30};
-    Date dx5{1998, Month::nov, 30};
+    // Date dx5{1998, Month::nov, 30};
+    Date dx5{};
 
     // // ++m;
 

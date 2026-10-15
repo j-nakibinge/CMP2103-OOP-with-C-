@@ -1,3 +1,34 @@
+// import std;
+// using namespace std;
+
+// // Base class
+// class Vehicle
+// {
+// public:
+//     string brand = "Ford";
+    
+//     void sound()
+//     {
+//         cout << "Tuut, tuut! \n";
+//     }
+// };
+
+// // Derived class
+// class Car : public Vehicle
+// {
+// public:
+//     string model = "Mustang";
+// };
+
+// int main()
+// {
+//     Car myCar;
+//     myCar.sound();
+//     cout << myCar.brand + " " + myCar.model;
+//     return 0;
+// }
+
+
 import std;
 using namespace std;
 
@@ -5,10 +36,16 @@ using namespace std;
 class Vehicle
 {
 public:
-    string brand = "Ford";
-    void honk()
+    string brand;
+
+    Vehicle(string brand)
+        : brand(brand)
     {
-        cout << "Tuut, tuut! \n";
+    }
+
+    void sound()
+    {
+        print("Tuut, tuut!\n");
     }
 };
 
@@ -16,13 +53,20 @@ public:
 class Car : public Vehicle
 {
 public:
-    string model = "Mustang";
+    string model;
+
+    Car(string brand, string model)
+        : Vehicle(brand), model(model)
+    {
+    }
 };
 
 int main()
 {
-    Car myCar;
-    myCar.honk();
-    cout << myCar.brand + " " + myCar.model;
+    Car myCar{"Ford", "Mustang"};
+
+    myCar.sound();
+    print("{} {}\n", myCar.brand, myCar.model);
+
     return 0;
 }

@@ -1,6 +1,6 @@
 import std;
 using namespace std;
-// simple Date (many people prefer implementation details last)
+// simple Date
 class Date
 {
 public:

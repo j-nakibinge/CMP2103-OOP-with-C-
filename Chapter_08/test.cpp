@@ -1,29 +1,72 @@
-import std;
+// import std;
+// using namespace std;
 
+// // Base class
+// class Vehicle
+// {
+// public:
+//     string brand = "Ford";
+    
+//     void sound()
+//     {
+//         cout << "Tuut, tuut! \n";
+//     }
+// };
+
+// // Derived class
+// class Car : public Vehicle
+// {
+// public:
+//     string model = "Mustang";
+// };
+
+// int main()
+// {
+//     Car myCar;
+//     myCar.sound();
+//     cout << myCar.brand + " " + myCar.model;
+//     return 0;
+// }
+
+
+import std;
 using namespace std;
 
-class Circle
+// Base class
+class Vehicle
 {
-    double radius; // private data member
 public:
-    Circle(double r); // default constructor
-    double getRadius()
-    { // public member function to access private data member
-        return radius;
+    string brand;
+
+    Vehicle(string brand)
+        : brand(brand)
+    {
     }
 
-    void setRadius(double r)
-    { // public member function to modify private data member
-        radius = r;
+    void sound()
+    {
+        print("Tuut, tuut!\n");
     }
 };
 
-Circle::Circle(double r = 1.0) : radius{r} {} // constructor with parameter
+// Derived class
+class Car : public Vehicle
+{
+public:
+    string model;
+
+    Car(string brand, string model)
+        : Vehicle(brand), model(model)
+    {
+    }
+};
 
 int main()
 {
-    Circle small_circle{};
-    // small_circle.setRadius(5.0); // Set the radius using the public member function
+    Car myCar{"Ford", "Mustang"};
 
-    print("Radius of the circle: {}\n", small_circle.getRadius()); // Get the radius using the public member function
+    myCar.sound();
+    print("{} {}\n", myCar.brand, myCar.model);
+
+    return 0;
 }

@@ -1,8 +1,12 @@
-#include <iostream>
+import std;
+using namespace std;
 
 // User defined type
 // Understant the concept of operator overloading
 
+
+// Defining a user-defined type Month
+// enum class Month maps the months of the year to integer values starting from 1 for January to 12 for December.
 enum class Month
 {
     jan = 1,
@@ -19,11 +23,13 @@ enum class Month
     dec
 };
 
+// convert Month to int
 int to_int(Month m)
 {
     return static_cast<int>(m);
 }
 
+// Override the increment operator for Month    
 Month operator++(Month &m)
 {
     m = (m == Month::dec)
@@ -33,6 +39,7 @@ Month operator++(Month &m)
     return m;
 }
 
+// Override the addition operator for Month
 Month operator+(Month &m, int n)
 {
     int month = to_int(m);
@@ -44,13 +51,14 @@ Month operator+(Month &m, int n)
 
 int main()
 {
+    // Create a month object m and initialize it to November
     Month m = Month::nov;
 
-    ++m;
+    ++m; // Increment the month by 1, which should wrap around to December
 
     std::cout << to_int(m) << '\n'; // 12
 
-    ++m;
-    m = m + 1;
-    std::cout << to_int(m) << '\n'; // 1
+    ++m; // Increment the month by 1, which should wrap around to January
+    m = m + 1; // Add 1 to the month, which should wrap around to February
+    cout << to_int(m) << '\n'; // 2
 }
