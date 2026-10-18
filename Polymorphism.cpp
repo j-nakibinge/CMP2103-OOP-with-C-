@@ -1,8 +1,7 @@
 #include <iostream>
 #include <string>
-#include <vector>
 
-// Base Parent Class
+// Base Class
 class SmartDevice {
 protected:
     std::string deviceName;
@@ -10,50 +9,50 @@ protected:
 public:
     SmartDevice(std::string name) : deviceName(name) {}
     
-    // Virtual function to enable runtime polymorphism
+    // Virtual function to enable polymorphism
     virtual void performAction() {
-        std::cout << deviceName << " is processing a generic command." << std::endl;
+        std::cout << deviceName << " performing generic smart action." << std::endl;
     }
-    
-    // Virtual destructor for safe memory cleanup
+
     virtual ~SmartDevice() {}
 };
 
-// Derived Class 1: Overrides performAction
-class SmartLight : public SmartDevice {
+// Derived Class 1: Smartphone
+class SmartPhone : public SmartDevice {
 public:
-    SmartLight(std::string name) : SmartDevice(name) {}
+    SmartPhone(std::string name) : SmartDevice(name) {}
     
+    // Overriding the virtual function
     void performAction() override {
-        std::cout << "[Light Control]: " << deviceName << " is turning ON and setting brightness to 80%." << std::endl;
+        std::cout << "[Smartphone]: " << deviceName << " is opening an application and connecting to 5G." << std::endl;
     }
 };
 
-// Derived Class 2: Overrides performAction
-class SmartThermostat : public SmartDevice {
+// Derived Class 2: SmartSpeaker
+class SmartSpeaker : public SmartDevice {
 public:
-    SmartThermostat(std::string name) : SmartDevice(name) {}
+    SmartSpeaker(std::string name) : SmartDevice(name) {}
     
+    // Overriding the virtual function
     void performAction() override {
-        std::cout << "[Climate Control]: " << deviceName << " is adjusting temperature to 22°C." << std::endl;
+        std::cout << "[Smart Speaker]: " << deviceName << " is playing audio music via voice command." << std::endl;
     }
 };
 
 int main() {
-    std::cout << "--- Runtime Polymorphism Demonstration ---" << std::endl;
+    std::cout << "--- Smart Device Runtime Polymorphism ---" << std::endl;
     
-    // Create base class pointers pointing to derived class objects
-    SmartDevice* light = new SmartLight("Living Room Bulb");
-    SmartDevice* thermostat = new SmartThermostat("Nest Thermostat");
+    // Base class pointer pointing to a Smartphone object
+    SmartDevice* devicePtr = new SmartPhone("iPhone 15 Pro");
+    devicePtr->performAction(); // Dynamically resolves to SmartPhone's function
+    delete devicePtr;
     
-    // Demonstrate polymorphism using base class pointer execution
-    std::cout << "\nExecuting commands via Base Class Pointers:" << std::endl;
-    light->performAction();       // Calls SmartLight's overridden function
-    thermostat->performAction();  // Calls SmartThermostat's overridden function
+    std::cout << "---------------------------------------" << std::endl;
     
-    // Clean up dynamic memory
-    delete light;
-    delete thermostat;
+    // Base class pointer pointing to a SmartSpeaker object
+    devicePtr = new SmartSpeaker("HomePod Mini");
+    devicePtr->performAction(); // Dynamically resolves to SmartSpeaker's function
+    delete devicePtr;
     
     return 0;
 }
